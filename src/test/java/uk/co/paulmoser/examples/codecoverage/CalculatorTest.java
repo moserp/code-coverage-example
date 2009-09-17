@@ -3,7 +3,6 @@ package uk.co.paulmoser.examples.codecoverage;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
-//import static org.junit.matchers.JUnitMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
 
 public class CalculatorTest {
