@@ -1,0 +1,53 @@
+Code coverage example to demonstrate all is not what it might seem.
+
+Don't get me wrong, code coverage is a useful tool, but you need to understand
+what it is telling you if you aren't going to allow it to lull you into a false
+sense of security.
+
+This surprises some people at first: 
+
+Code coverage does not tell you what has been tested
+
+Code coverage tells you what code has been executed by the tests, it does not
+tell you that the code has run as expected. As it tells you what code has been
+executed the inverse is also true, it tells you what code hasn't been executed.
+Code that hasn't been executed you can be sure hasn't been tested.
+
+What can be said is:
+
+Code coverage tells you what certainly isn't tested.
+Code coverage tells you *at best* how much of the code is tested.
+
+
+Code coverage of 80% doesn't mean 80% of your code is tested, it means at least
+20% of your code isn't tested.
+
+A simple example to demonstrate this. A very simple Calculator class which can
+perform basic arithmetic, its tests and the coverage report.
+
+The coverage report shows that the subtract() method isn't covered, and
+checking the tests there are no tests for that method. It's true that at least
+20% of our code isn't tested but if we assume that the other 80% works fine
+as it is covered then we could be in for a nasty surprise in the future.
+
+The coverage report shows that the divide() method is covered and the 
+dividesTwoNumbers() test does indeed execute it, however the test makes no
+assertions about what the behaviour of the method, the code may or may not
+function correctly. Whilst the code does divide one number by another it is
+not clear whether it functions as expected, it is performing integer
+arithmetic, did the author expect the result of 5/2 to be 2, rather than 2.5?
+
+It's not just missing assertions that mean that covered code isn't correctly
+functioning tested code. The code can be wrong or the test could be wrong and
+the test will still pass. There is a test for multiplication that does check
+for a correct result, however because of an unfortunate choice of test data the
+test still passes despite the multiple() method incorrectly returning the sum
+of the two parameters rather than the product.
+
+From over coverage of 80% it seems that only 40% is actually working correctly,
+the remainder is either untested, faulty or behaves ambiguously. Whilst the
+Calculator is a simple class and it's fairly obvious where omissions and
+mistakes are in more complex classes if can be far less clear.
+
+Code coverage also means nothing with regards to the quality of the tests, how
+readable, maintainable and communicative they are, but that's another subject.
